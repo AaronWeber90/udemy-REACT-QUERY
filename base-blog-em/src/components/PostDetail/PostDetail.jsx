@@ -24,12 +24,21 @@ export function PostDetail({ post }) {
   const {
     data: commentsData,
     isLoading: isCommentsDataLoading,
-    isError,
-    error,
+    isError: isCommentsDataError,
+    error: commentsDataError,
   } = useQuery(`postDetail-${post.id}`, () => fetchComments(id))
 
   if (isCommentsDataLoading) {
     return <p>Loading...</p>
+  }
+
+  if (isCommentsDataError) {
+    return (
+      <>
+        <p>Something went wrong!</p>
+        <p>{commentsDataError.toString()}</p>
+      </>
+    )
   }
 
   return (
