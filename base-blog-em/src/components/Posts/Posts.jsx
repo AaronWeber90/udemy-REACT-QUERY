@@ -5,6 +5,7 @@ import { useCurrentPage } from "./hooks/useCurrentPage"
 import { useRefetchNextPage } from "./hooks/useRefetchNextPage"
 import { useSelectedPost } from "./hooks/useSelectedPost"
 import { fetchPosts } from "./utils/utils"
+import { MAX_POST_PAGE } from "../../constants/global"
 
 export function Posts() {
   const { currentPage, setCurrentPage } = useCurrentPage()
@@ -53,7 +54,7 @@ export function Posts() {
         </button>
         <span>Page {currentPage}</span>
         <button
-          disabled={currentPage >= 10}
+          disabled={currentPage >= MAX_POST_PAGE}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           Next page
