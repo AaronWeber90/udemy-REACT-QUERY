@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export const useCurrentPage = () => {
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
 
   return { currentPage, setCurrentPage }
 }

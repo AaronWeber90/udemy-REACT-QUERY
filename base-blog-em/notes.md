@@ -19,3 +19,15 @@
 - User clicks "next page" or "previous page" button
   - update `currentPage` state
   - fire off new query
+
+## 14 - Prefetching
+
+### Prefetch
+
+- adds data to cache
+- automatically stale (confiurable)
+- shows while re-fetching, as long as the cache hasn't expired!
+
+### Prefetching can be used for any anticipated data needs
+
+- not just pagination!

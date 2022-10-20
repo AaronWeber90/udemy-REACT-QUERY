@@ -2,6 +2,7 @@ import { useQuery } from "react-query"
 
 import { PostDetail } from "../PostDetail/PostDetail"
 import { useCurrentPage } from "./hooks/useCurrentPage"
+import { useRefetchNextPage } from "./hooks/useRefetchNextPage"
 import { useSelectedPost } from "./hooks/useSelectedPost"
 import { fetchPosts } from "./utils/utils"
 
@@ -9,9 +10,11 @@ export function Posts() {
   const { currentPage, setCurrentPage } = useCurrentPage()
   const { selectedPost, setSelectedPost } = useSelectedPost()
 
+  const RefetchNextPage = useRefetchNextPage(currentPage)
+
   const { data, isLoading, isError, error } = useQuery(
-    "posts",
-    () => fetchPosts(),
+    ["posts", currentPage],
+    () => fetchPosts(currentPage),
     { staleTime: 3000 }
   )
 
@@ -43,15 +46,15 @@ export function Posts() {
       </ul>
       <div className="pages">
         <button
-          disabled
-          onClick={() => {}}
+          disabled={currentPage <= 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
         >
           Previous page
         </button>
-        <span>Page {currentPage + 1}</span>
+        <span>Page {currentPage}</span>
         <button
-          disabled
-          onClick={() => {}}
+          disabled={currentPage >= 10}
+          onClick={() => setCurrentPage(currentPage + 1)}
         >
           Next page
         </button>
