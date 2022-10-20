@@ -31,3 +31,11 @@
 ### Prefetching can be used for any anticipated data needs
 
 - not just pagination!
+
+### Combination with pagination
+
+- Add page number to query key and query function
+
+- Prefetching with `queryClient.prefetchQuery(["posts", nextPage], () => fetchPosts(nextPage))`
+
+- Add `keepPreviousData:true` to query options
