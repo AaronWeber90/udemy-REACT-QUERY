@@ -1,6 +1,7 @@
 import { useQuery } from "react-query"
 
 import { PostDetail } from "../PostDetail/PostDetail"
+
 import { useCurrentPage } from "./hooks/useCurrentPage"
 import { useRefetchNextPage } from "./hooks/useRefetchNextPage"
 import { useSelectedPost } from "./hooks/useSelectedPost"
@@ -16,7 +17,7 @@ export function Posts() {
   const { data, isLoading, isError, error } = useQuery(
     ["posts", currentPage],
     () => fetchPosts(currentPage),
-    { staleTime: 3000, keepPreviousData: true }
+    { staleTime: 3000, keepPreviousData: true, useErrorBoundary: true }
   )
 
   if (isLoading) {
