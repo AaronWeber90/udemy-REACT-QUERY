@@ -2,10 +2,9 @@ import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { Posts } from "./components/Posts/Posts"
 import { ErrorBoundary } from "react-error-boundary"
+import { ErrorFallback } from "./components/ErrorFallback/ErrorFallback"
 
 const queryClient = new QueryClient()
-
-const ErrorFallback = () => <p>ERROR</p>
 
 function App() {
   return (
