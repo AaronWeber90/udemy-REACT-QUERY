@@ -1,12 +1,10 @@
 import { QueryClient, QueryClientProvider } from "react-query"
-import { Posts } from "./Posts"
-import "./App.css"
+import { Posts } from "./components/Posts/Posts"
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
-    // provide React Query client to App
     <QueryClientProvider client={queryClient}>
       <div className="App">
         <h1>Blog Posts</h1>
