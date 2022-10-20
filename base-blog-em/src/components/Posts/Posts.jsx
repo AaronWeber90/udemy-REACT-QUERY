@@ -9,8 +9,10 @@ export function Posts() {
   const { currentPage, setCurrentPage } = useCurrentPage()
   const { selectedPost, setSelectedPost } = useSelectedPost()
 
-  const { data, isLoading, isError, error } = useQuery("posts", () =>
-    fetchPosts()
+  const { data, isLoading, isError, error } = useQuery(
+    "posts",
+    () => fetchPosts(),
+    { staleTime: 3000 }
   )
 
   if (isLoading) {
