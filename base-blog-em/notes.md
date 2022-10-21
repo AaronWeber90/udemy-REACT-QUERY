@@ -39,3 +39,11 @@
 - Prefetching with `queryClient.prefetchQuery(["posts", nextPage], () => fetchPosts(nextPage))`
 
 - Add `keepPreviousData:true` to query options
+
+## Error Handling
+
+[React query error handling](https://tkdodo.eu/blog/react-query-error-handling)
+
+[Kent C. Dodds - error boundary docs](https://kentcdodds.com/blog/use-react-error-boundary-to-handle-errors-in-react#react-error-boundary)
+
+[Kent C. Dodds - error boundary npm](https://www.npmjs.com/package/react-error-boundary)
