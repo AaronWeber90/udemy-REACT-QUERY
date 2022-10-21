@@ -7,6 +7,7 @@ import { useRefetchNextPage } from "./hooks/useRefetchNextPage"
 import { useSelectedPost } from "./hooks/useSelectedPost"
 import { fetchPosts } from "./utils/utils"
 import { MAX_POST_PAGE } from "../../constants/global"
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent"
 
 export function Posts() {
   const { currentPage, setCurrentPage } = useCurrentPage()
@@ -21,7 +22,7 @@ export function Posts() {
   )
 
   if (isLoading) {
-    return <h3>Is Loading...</h3>
+    return <LoadingComponent />
   }
 
   if (isError) {

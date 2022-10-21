@@ -1,6 +1,7 @@
-import { useQuery } from "react-query"
+import { useQuery, useMutation } from "react-query"
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent"
 
-import { fetchComments } from "./utils/utils"
+import { deletePost, fetchComments, updatePost } from "./utils/utils"
 
 export function PostDetail({ post }) {
   const { id, title, body } = post
@@ -12,8 +13,12 @@ export function PostDetail({ post }) {
     error: commentsDataError,
   } = useQuery(["comments", post.id], () => fetchComments(id))
 
+  const deleteMutation = useMutation((postId) => deletePost(postId))
+
+  const updateMutation = useMutation((postId) => updatePost(postId))
+
   if (isCommentsDataLoading) {
-    return <p>Loading...</p>
+    return <LoadingComponent />
   }
 
   if (isCommentsDataError) {
@@ -28,7 +33,12 @@ export function PostDetail({ post }) {
   return (
     <>
       <h3 style={{ color: "blue" }}>{title}</h3>
-      <button>Delete</button> <button>Update title</button>
+      <button onClick={() => deleteMutation.mutate(id)}>Delete</button>{" "}
+      {deleteMutation.isError && <p>Error when deleting post.</p>}
+      {deleteMutation.isLoading && <p>Deleting the post.</p>}
+      {deleteMutation.isSuccess && <p>Post has been deleted.</p>}
+      <button onClick={() => updateMutation.mutate(id)}>Update title</button>
+      {updateMutation.isSuccess && <p>Post has been updated.</p>}
       <p>{body}</p>
       <h4>Comments</h4>
       {commentsData?.map(({ id, email, body }) => (
