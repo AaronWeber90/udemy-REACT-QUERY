@@ -6,14 +6,14 @@ export const fetchComments = async (postId) => {
 }
 
 export const deletePost = async (postId) => {
-  const response = await fetch(`${BASEURL}postId/${postId}`, {
+  const response = await fetch(`${BASEURL}posts/${postId}`, {
     method: "DELETE",
   })
   return response.json()
 }
 
-export const pdatePost = async (postId) => {
-  const response = await fetch(`${BASEURL}postId/${postId}`, {
+export const updatePost = async (postId) => {
+  const response = await fetch(`${BASEURL}posts/${postId}`, {
     method: "PATCH",
     data: { title: "REACT QUERY FOREVER!!!!" },
   })
